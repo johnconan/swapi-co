@@ -41,7 +41,7 @@ export default class RandomPlanet extends Component {
 
   updatePlanet = () => {
     const { getData } = this.props;
-    const id = Math.floor(Math.random() * 10) + 1;
+    const id = Math.floor(Math.random() * 10) + 2;
       getData(id)
       .then(this.onPlanetLoaded)
       .catch(this.onErrorLoading);

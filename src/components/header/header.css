@@ -11,11 +11,16 @@
 }
 
 .header ul li:hover {
-  background-color: #444;
+  background-color: #1646a5;
 }
 
 .header a:hover {
   text-decoration: none;
+  color: yellow;
+}
+
+.header a {
+  color: #fff;
 }
 
 .header h3 a {
@@ -23,5 +28,5 @@
 }
 
 .header h3 a:hover {
-  color: #00bc8c;
+  color: yellow;
 }
