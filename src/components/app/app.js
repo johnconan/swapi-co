@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import Header from '../header';
 import RandomPlanet from '../random-planet';
-import ItemList from '../item-list';
-import PersonDetails from '../person-details';
 import PeoplePage from '../people-page';
 
 import SwapiService from '../../services/swapi-service';
@@ -20,8 +18,8 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <RandomPlanet />
-
+        <RandomPlanet getData={this.swapiService.getPlanet}
+                      getImageUrl={this.swapiService.getImagePlanet} />
         <PeoplePage />
       </div>
     );

@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 
 import './random-planet.css';
 
-import SwapiService from '../../services/swapi-service';
-
 import Spinner from '../spinner';
 import ErrorLoad from '../error-indicator';
 
 export default class RandomPlanet extends Component {
 
-  swapiService = new SwapiService();
-
   state = {
     planet: {},
     loading: true,
-    error: false
+    error: false,
+    image: null
   }
 
   componentDidMount() {
@@ -27,9 +24,11 @@ export default class RandomPlanet extends Component {
   }
 
   onPlanetLoaded = (planet) => {
+    const { getImageUrl } = this.props;
     this.setState({
       planet: planet,
-      loading: false
+      loading: false,
+      image: getImageUrl(planet)
     });
   };
 
@@ -41,23 +40,25 @@ export default class RandomPlanet extends Component {
   }
 
   updatePlanet = () => {
-    const id = Math.floor(Math.random() * 17) + 3;
-    this.swapiService
-      .getPlanet(id)
+    const { getData } = this.props;
+    const id = Math.floor(Math.random() * 10) + 1;
+      getData(id)
       .then(this.onPlanetLoaded)
       .catch(this.onErrorLoading);
   }
 
   render() {
 
-    const { planet, loading, error } = this.state;
+    const { planet, loading, error, image } = this.state;
 
     const hasData = !(loading || error);
 
     const err = error ? <ErrorLoad /> : null;
 
     const spinner = loading ? <Spinner /> : null;
-    const content = hasData ? <PlanetView planet={planet} /> : null;
+    const content = hasData ? <PlanetView 
+                                  getImage={image}
+                                  planet={planet} /> : null;
 
     return (
       <div className="random-planet jumbotron rounded">
@@ -69,31 +70,35 @@ export default class RandomPlanet extends Component {
   }
 }
 
-const PlanetView = ({ planet }) => {
+class PlanetView extends Component {
 
-  const { id, name, population, rotationPeriod, diameter } = planet;
+  render() {
+    const { name, population, rotationPeriod, diameter } = this.props.planet;
+    const { getImage } = this.props;
 
-  return (
-    <React.Fragment>
-      <img className="planet-image"
-        src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="planet" />
-      <div>
-        <h4>{name}</h4>
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">
-            <span className="term">Population</span>
-            <span>{population}</span>
-          </li>
-          <li className="list-group-item">
-            <span className="term">Rotation Period</span>
-            <span>{rotationPeriod}</span>
-          </li>
-          <li className="list-group-item">
-            <span className="term">Diameter</span>
-            <span>{diameter}</span>
-          </li>
-        </ul>
-      </div>
-    </React.Fragment>
-  );
+    return (
+      <React.Fragment>
+        <img className="planet-image"
+          src={ getImage } alt="planet" />
+        <div>
+          <h4>{name}</h4>
+          <ul className="list-group list-group-flush">
+            <li className="list-group-item">
+              <span className="term">Population</span>
+              <span>{population}</span>
+            </li>
+            <li className="list-group-item">
+              <span className="term">Rotation Period</span>
+              <span>{rotationPeriod}</span>
+            </li>
+            <li className="list-group-item">
+              <span className="term">Diameter</span>
+              <span>{diameter}</span>
+            </li>
+          </ul>
+        </div>
+      </React.Fragment>
+    );
+  }
+
 }

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './people-page.css';
 
 import ItemList from '../item-list'
-import PersonDetails from '../person-details'
-import ErrorLoad from '../error-indicator'
+import ItemDetails from '../item-details'
 import Row from '../row';
+import ErrorBoundry from '../error-boundry';
 
 import SwapiService from "../../services/swapi-service";
 
@@ -18,31 +18,32 @@ export default class PeoplePage extends Component {
         hasError: false
     }
 
-    onItemSelected = (selectedPersonId) => {
+    onItemSelected = (id) => {
         this.setState({
-            selectedPersonId
+            selectedPersonId: id
         })
-    }
-
-    componentDidCatch() {
-        this.setState({ hasError: true })
     }
 
     render() {
 
-        if (this.state.hasError) {
-            return <ErrorLoad />
-        }
+        const { getImagePerson, getPerson, getAllPeople } = this.swapiService;
+
+        const { selectedPersonId } = this.state;
 
         const itemList = (
             <ItemList
                 onItemSelected={this.onItemSelected}
-                getData={this.swapiService.getAllPeople}
-            />
+                getData={getAllPeople}
+            >
+            </ItemList>
         );
 
         const personDetails = (
-            <PersonDetails selectedPersonId={this.state.selectedPersonId}/>
+            <ErrorBoundry>
+                <ItemDetails selectedPersonId={selectedPersonId}
+                             getData={getPerson}
+                             getImageUrl={getImagePerson}/>
+            </ErrorBoundry>
         );
 
         return (

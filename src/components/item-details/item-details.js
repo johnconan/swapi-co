@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 
-import './person-details.css';
-import SwapiService from "../../services/swapi-service";
+import './item-details.css';
 
-export default class PersonDetails extends Component {
-
-  swapiService = new SwapiService();
+export default class ItemDetails extends Component {
 
   state = {
-    person: null
+    item: null,
+    image: null
   };
 
   componentDidMount() {
@@ -22,49 +20,51 @@ export default class PersonDetails extends Component {
   }
 
   updatePerson() {
-    const { selectedPersonId } = this.props;
+    const { selectedPersonId, getData, getImageUrl } = this.props;
     if (!selectedPersonId) {
       return;
     }
 
-    this.swapiService
-      .getPerson(selectedPersonId)
-      .then((person) => {
-        this.setState({ person });
+    getData(selectedPersonId)
+      .then((item) => {
+        this.setState({
+          item,
+          image: getImageUrl(item)
+        });
       });
   }
+  
 
   render() {
 
-    const { person } = this.state;
+    const { item, image } = this.state;
 
-    if (!person) {
+    if (!item) {
       return <span>Выберите персонажа из списка</span>;
     }
 
-    const { person: { id, name, gender,
-      birthYear, eyeColor } } = this.state;
+    const {name, gender, birthYear, eyeColor } = this.state.item;
 
     return (
       <div className="person-details card">
         <img className="person-image"
-          src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+          src={image}
           alt="character" />
 
         <div className="card-body">
-          <h4>{name}</h4>
+          <h4>{ name }</h4>
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
               <span className="term">Gender</span>
-              <span>{gender}</span>
+              <span>{ gender }</span>
             </li>
             <li className="list-group-item">
               <span className="term">Birth Year</span>
-              <span>{birthYear}</span>
+              <span>{ birthYear }</span>
             </li>
             <li className="list-group-item">
               <span className="term">Eye Color</span>
-              <span>{eyeColor}</span>
+              <span>{ eyeColor }</span>
             </li>
           </ul>
         </div>
