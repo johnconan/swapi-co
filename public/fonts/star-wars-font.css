@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'STARWARS';
+    src: url('STARWARS.woff2') format('woff2'),
+        url('STARWARS.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+

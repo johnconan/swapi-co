@@ -1,6 +1,5 @@
 .header {
   margin-top: 2rem;
-  padding-left: 10px;
 }
 
 .header ul li {
@@ -28,6 +27,9 @@
 
 .header h3 a {
   color: yellow;
+    font-family: 'STARWARS';
+    font-size: 40px;
+    text-transform: uppercase;
 }
 
 .header h3 a:hover {
