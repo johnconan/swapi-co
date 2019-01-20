@@ -1,5 +1,5 @@
 .header {
-  margin-top: .5rem;
+  margin-top: 2rem;
   padding-left: 10px;
 }
 
@@ -8,23 +8,26 @@
   margin: 0;
   padding: .5rem 1rem;
   border-radius: 3px;
+  background-color: #1646a5;
+  margin-right: 1rem;
+  cursor: pointer;
 }
 
 .header ul li:hover {
-  background-color: #1646a5;
+  box-shadow: 0px 0px 20px 5px rgba(5, 8, 190, 0.856);
+  transition: .2s all;
 }
 
 .header a:hover {
   text-decoration: none;
-  color: yellow;
 }
 
 .header a {
-  color: #fff;
+  color: white;
 }
 
 .header h3 a {
-  color: white;
+  color: yellow;
 }
 
 .header h3 a:hover {

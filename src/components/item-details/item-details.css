@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: row;
   padding: 1rem;
-  background: black;
+  background: #090b18;
   cursor: pointer;
+  border: 0.5px solid #a5aaed;
 }
 .person-details:hover {
   box-shadow: 14px -5px 97px 5px rgba(45, 4, 228, 0.66);
@@ -18,7 +19,7 @@
 
 .person-details .list-group-item {
   padding: .25rem;
-  background: black;
+  background: #090b18;
 }
 
 .person-details .list-group-item .term{

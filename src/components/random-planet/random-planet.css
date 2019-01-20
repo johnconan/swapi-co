@@ -1,12 +1,13 @@
 .random-planet {
   display: flex;
   padding: 1rem;
-  background: black;
+  background: #090b18;
   cursor: pointer;
+  border: .5px solid #a5aaed;
 }
 
 .random-planet:hover {
-  box-shadow: 14px -5px 97px 5px rgba(142, 228, 4, 0.66);
+  box-shadow: 5px 5px 50px 5px rgba(45, 4, 228, 0.66);
   transition: .2s all
 } 
 
@@ -24,7 +25,7 @@
 
 .random-planet .list-group-item {
   padding: .25rem;
-  background: black;
+  background: #090b18;
 }
 
 .random-planet .list-group-item .term {
