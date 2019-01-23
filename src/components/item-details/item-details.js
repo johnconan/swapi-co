@@ -21,6 +21,7 @@ export default class ItemDetails extends Component {
 
   updatePerson() {
     const { selectedId, getData, getImageUrl } = this.props;
+    
     if (!selectedId) {
       return;
     }
@@ -34,16 +35,15 @@ export default class ItemDetails extends Component {
       });
   }
   
-
   render() {
 
     const { item, image } = this.state;
 
     if (!item) {
-      return <span>Выберите персонажа из списка</span>;
+      return <span>Загружаем...</span>;
     }
 
-    const {name} = this.state.item;
+    const { name } = this.state.item;
 
     return (
       <div className="person-details card">
@@ -57,7 +57,7 @@ export default class ItemDetails extends Component {
             {
               React.Children.map(this.props.children, (child) => {
                 return React.cloneElement(child, {item});
-              }) 
+              })
             }
           </ul>
         </div>

@@ -7,7 +7,8 @@
   margin: 0;
   padding: .5rem 1rem;
   border-radius: 3px;
-  background-color: #1646a5;
+  background-color: #090b18;
+  border: 0.5px solid #a5aaed;
   margin-right: 1rem;
   cursor: pointer;
 }

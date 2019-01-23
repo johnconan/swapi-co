@@ -16,6 +16,10 @@ export default class SwapiService {
     const res = await this.getResource(`/people/`);
     return res.results.map(this._transformPerson);
   }
+   getResidentPlanet = async (id) => {
+    const res = await this.getResource(`https://swapi.co/api/planets/${id}`);
+    return res.residents;
+  }
 
    getPerson = async (id) => {
     const person = await this.getResource(`/people/${id}/`);
@@ -58,13 +62,23 @@ export default class SwapiService {
     const idRegExp = /\/([0-9]*)\/$/;
     return item.url.match(idRegExp)[1];
   }
+  _extractResidentId = (item) => {
+    const idRegExp = /\/([0-9]*)\/$/;
+    return item.match(idRegExp)[1];
+  }
+
+  _transformResidentPlanet = (resident) => {
+    return {
+      id: this._extractResidentId(resident)
+    }
+  }
 
   _transformPlanet = (planet) => {
     return {
       id: this._extractId(planet),
       name: planet.name,
       population: planet.population,
-      rotationPeriod: planet.rotation_period,
+      rotation_period: planet.rotation_period,
       diameter: planet.diameter
     };
   }
@@ -75,11 +89,11 @@ export default class SwapiService {
       name: starship.name,
       model: starship.model,
       manufacturer: starship.manufacturer,
-      costInCredits: starship.costInCredits,
+      cost_in_credits: starship.cost_in_credits,
       length: starship.length,
       crew: starship.crew,
       passengers: starship.passengers,
-      cargoCapacity: starship.cargoCapacity
+      cargo_capacity: starship.cargo_capacity
     }
   }
 
@@ -88,8 +102,12 @@ export default class SwapiService {
       id: this._extractId(person),
       name: person.name,
       gender: person.gender,
-      birthYear: person.birthYear,
-      eyeColor: person.eyeColor
+      birth_year: person.birth_year,
+      eye_color: person.eye_color,
+      height: person.height,
+      mass: person.mass,
+      hair_color: person.hair_color
     }
   }
 }
+

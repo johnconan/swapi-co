@@ -1,0 +1,8 @@
+.welcome {
+  font-size: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  color: yellow;
+  font-family: 'STARWARS';
+  margin-top: 150px;
+}
