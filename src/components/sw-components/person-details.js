@@ -4,14 +4,14 @@ import ItemDetails from '../item-details';
 import Record from '../record';
 import { SwapiServiceConsumer } from '../swapi-service-context';
 
-const PersonDetails = ({ itemId }) => {
+const PersonDetails = ({ selectedId }) => {
   return (
       <SwapiServiceConsumer>
           {
             ({ getPerson, getImagePerson }) => {
                 return (
                     <ItemDetails
-                        selectedId={itemId}
+                        selectedId={selectedId}
                         getData={getPerson}
                         getImageUrl={getImagePerson}>
 

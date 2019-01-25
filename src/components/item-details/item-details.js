@@ -40,7 +40,7 @@ export default class ItemDetails extends Component {
     const { item, image } = this.state;
 
     if (!item) {
-      return <span>Загружаем...</span>;
+      return <span>Выберите персонажа из списка</span>
     }
 
     const { name } = this.state.item;

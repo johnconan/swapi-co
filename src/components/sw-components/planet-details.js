@@ -4,7 +4,7 @@ import ItemDetails from '../item-details';
 import Record from '../record';
 import { SwapiServiceConsumer } from '../swapi-service-context';
 
-const PlanetDetails = ({ itemId }) => {
+const PlanetDetails = ({ selectedId }) => {
   return (
       <SwapiServiceConsumer>
           {
@@ -12,7 +12,7 @@ const PlanetDetails = ({ itemId }) => {
                   return (
                       <div>
                         <ItemDetails
-                            selectedId={itemId}
+                            selectedId={selectedId}
                             getData={getPlanet}
                             getImageUrl={getImagePlanet}>
 

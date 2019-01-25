@@ -1,6 +1,6 @@
 import React from 'react';
 
-import icon from './error404.jpg';
+import icon from './page-404.jpg';
 
 import './error-indicator.css'
 

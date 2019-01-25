@@ -20,7 +20,7 @@ export default class PlanetsPage extends Component {
         <Row left={<PlanetList 
                         onItemSelected={this.onItemSelected} />}
             right={<PlanetDetails 
-                        itemId={this.state.selectedItem} />}
+              selectedId={this.state.selectedItem} />}
         />
       </div>
     );
